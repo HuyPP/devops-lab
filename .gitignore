@@ -1,0 +1,7 @@
+.terraform/
+*.tfstate*
+*.exe
+*.lock.hcl
+__pycache__/
+venv/
+.DS_Store
