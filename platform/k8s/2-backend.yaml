@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-api
+  namespace: smartshop
+spec:
+  replicas: 2  # Chạy 2 bản sao để thực hành cân bằng tải (Load Balancing)
+  selector:
+    matchLabels:
+      app: order-api
+  template:
+    metadata:
+      labels:
+        app: order-api
+    spec:
+      containers:
+      - name: api
+        image: ealen/echo-server:latest
+        env:
+        - name: DB_HOST
+          value: "postgres.smartshop.svc.cluster.local"
+        - name: REDIS_HOST
+          value: "redis.smartshop.svc.cluster.local"
+        - name: PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-api
+  namespace: smartshop
+spec:
+  selector:
+    app: order-api
+  ports:
+  - port: 80
+    targetPort: 8080
