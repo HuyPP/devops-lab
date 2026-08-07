@@ -2,7 +2,7 @@
 terraform {
   required_version = ">= 1.5.0"
   backend "s3" {
-    bucket         = "smartshop-tf-state-19092002" # Nhập lại tên Bucket vừa tạo ở bước 2
+    bucket         = "smartshop-tf-state-19092002" 
     key            = "dev/network/terraform.tfstate"
     region         = "ap-southeast-1"
     use_lockfile   = true
