@@ -3,12 +3,11 @@ kind: Ingress
 metadata:
   name: smartshop-ingress
   namespace: smartshop
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  
 spec:
   ingressClassName: nginx
   rules:
-  - host: smartshop.local 
+  - host: smartshop.local
     http:
       paths:
       - path: /api
